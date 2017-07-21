@@ -8,12 +8,7 @@ public class Game {
     boolean isGettingOutOfPenaltyBox;
 
     public Game() {
-        for (int i = 0; i < 50; i++) {
-            questions.getPopQuestions().addLast("Pop Question " + i);
-            questions.getScienceQuestions().addLast(("Science Question " + i));
-            questions.getSportsQuestions().addLast(("Sports Question " + i));
-            questions.getRockQuestions().addLast("Rock Question " + i);
-        }
+        questions.setQuestions();
     }
 
     public boolean isPlayable() {

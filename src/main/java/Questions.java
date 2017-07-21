@@ -36,4 +36,12 @@ public class Questions {
         return rockQuestions;
     }
 
+    void setQuestions() {
+        for (int i = 0; i < 50; i++) {
+            getPopQuestions().addLast("Pop Question " + i);
+            getScienceQuestions().addLast(("Science Question " + i));
+            getSportsQuestions().addLast(("Sports Question " + i));
+            getRockQuestions().addLast("Rock Question " + i);
+        }
+    }
 }
