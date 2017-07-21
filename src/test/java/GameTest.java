@@ -118,33 +118,4 @@ public class GameTest {
         assertThat(triviaGame.isGettingOutOfPenaltyBox).isTrue();
     }
 
-    @Test
-    public void there_should_be_pop_question_on_case_0_4_and_8() throws Exception {
-        triviaGame.addPlayer("player");
-
-        Method method = Game.class.getDeclaredMethod("currentCategory",null);
-        method.setAccessible(true);
-
-        triviaGame.places[0]=0;
-        assertThat(method.invoke(triviaGame,null)).isEqualTo("Pop");
-        triviaGame.places[0]=4;
-        assertThat(method.invoke(triviaGame,null)).isEqualTo("Pop");
-        triviaGame.places[0]=8;
-        assertThat(method.invoke(triviaGame,null)).isEqualTo("Pop");
-    }
-
-    @Test
-    public void there_should_be_science_questions_on_case_1_5_and_9() throws Exception {
-        triviaGame.addPlayer("player");
-
-        Method method = Game.class.getDeclaredMethod("currentCategory",null);
-        method.setAccessible(true);
-
-        triviaGame.places[0]=1;
-        assertThat(method.invoke(triviaGame,null)).isEqualTo("Science");
-        triviaGame.places[0]=5;
-        assertThat(method.invoke(triviaGame,null)).isEqualTo("Science");
-        triviaGame.places[0]=9;
-        assertThat(method.invoke(triviaGame,null)).isEqualTo("Science");
-    }
 }

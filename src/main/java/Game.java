@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Game {
 
     final Questions questions = new Questions();
-    private final QuestionFieldRepartition questionFieldRepartitor = new QuestionFieldRepartition(this);
+    private final QuestionFieldRepartition questionFieldRepartition = new QuestionFieldRepartition();
     ArrayList players = new ArrayList();
 
     int[] places = new int[6];
@@ -57,8 +57,8 @@ public class Game {
                 System.out.println(players.get(currentPlayer)
                         + "'s new location is "
                         + places[currentPlayer]);
-                System.out.println("The category is " + questionFieldRepartitor.currentCategory());
-                questions.askQuestion(questionFieldRepartitor.currentCategory());
+                System.out.println("The category is " + questionFieldRepartition.currentCategory(places[currentPlayer]));
+                questions.askQuestion(questionFieldRepartition.currentCategory(places[currentPlayer]));
             } else {
                 System.out.println(players.get(currentPlayer) + " is not getting out of the penalty box");
                 isGettingOutOfPenaltyBox = false;
@@ -72,8 +72,8 @@ public class Game {
             System.out.println(players.get(currentPlayer)
                     + "'s new location is "
                     + places[currentPlayer]);
-            System.out.println("The category is " + questionFieldRepartitor.currentCategory());
-            questions.askQuestion(questionFieldRepartitor.currentCategory());
+            System.out.println("The category is " + questionFieldRepartition.currentCategory(places[currentPlayer]));
+            questions.askQuestion(questionFieldRepartition.currentCategory(places[currentPlayer]));
         }
 
     }
