@@ -29,7 +29,7 @@ public class Game {
 
                 System.out.println(players.getPlayers().get(currentPlayer) + " is getting out of the penalty box");
 
-                players.movePlayer(roll, this);
+                players.movePlayer(roll, this.currentPlayer);
                 displayLocationAndQuestionCategory();
                 questions.askQuestionAbout(questionFieldRepartition.categoryOfCase(players.getPlaces()[currentPlayer]));
             } else {
@@ -39,7 +39,7 @@ public class Game {
 
         } else {
 
-            players.movePlayer(roll, this);
+            players.movePlayer(roll, this.currentPlayer);
             displayLocationAndQuestionCategory();
             questions.askQuestionAbout(questionFieldRepartition.categoryOfCase(players.getPlaces()[currentPlayer]));
         }

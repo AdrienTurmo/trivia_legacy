@@ -49,8 +49,8 @@ public class Players {
         return !(purses[currentPlayer] == 6);
     }
 
-    void movePlayer(int roll, Game game) {
-        getPlaces()[game.currentPlayer] = getPlaces()[game.currentPlayer] + roll;
-        if (getPlaces()[game.currentPlayer] > 11) getPlaces()[game.currentPlayer] = getPlaces()[game.currentPlayer] - 12;
+    void movePlayer(int roll, int currentPlayer) {
+        places[currentPlayer] = places[currentPlayer] + roll;
+        if (places[currentPlayer] > 11) places[currentPlayer] = places[currentPlayer] - 12;
     }
 }
