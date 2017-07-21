@@ -22,84 +22,84 @@ public class GameTest {
 
     @Test
     public void players_should_be_added_to_the_game() throws Exception {
-        triviaGame.addPlayer("player1");
-        triviaGame.addPlayer("player2");
+        triviaGame.players.addPlayer("player1", triviaGame);
+        triviaGame.players.addPlayer("player2", triviaGame);
 
         assertThat(triviaGame.howManyPlayers()).isEqualTo(2);
-        assertThat(triviaGame.players.players).contains("player1");
-        assertThat(triviaGame.players.players).contains("player2");
+        assertThat(triviaGame.players.getPlayers()).contains("player1");
+        assertThat(triviaGame.players.getPlayers()).contains("player2");
     }
 
     @Test
     public void all_players_should_start_with_0_points() throws Exception {
-        triviaGame.addPlayer("player1");
-        triviaGame.addPlayer("player2");
-        triviaGame.addPlayer("player3");
-        triviaGame.addPlayer("player4");
-        triviaGame.addPlayer("player5");
+        triviaGame.players.addPlayer("player1", triviaGame);
+        triviaGame.players.addPlayer("player2", triviaGame);
+        triviaGame.players.addPlayer("player3", triviaGame);
+        triviaGame.players.addPlayer("player4", triviaGame);
+        triviaGame.players.addPlayer("player5", triviaGame);
 
-        assertThat(triviaGame.players.purses).isEqualTo(new int[]{0, 0, 0, 0, 0, 0});
+        assertThat(triviaGame.players.getPurses()).isEqualTo(new int[]{0, 0, 0, 0, 0, 0});
     }
 
     @Test
     public void all_players_should_start_at_the_first_place() throws Exception {
-        triviaGame.addPlayer("player1");
-        triviaGame.addPlayer("player2");
-        triviaGame.addPlayer("player3");
-        triviaGame.addPlayer("player4");
-        triviaGame.addPlayer("player5");
+        triviaGame.players.addPlayer("player1", triviaGame);
+        triviaGame.players.addPlayer("player2", triviaGame);
+        triviaGame.players.addPlayer("player3", triviaGame);
+        triviaGame.players.addPlayer("player4", triviaGame);
+        triviaGame.players.addPlayer("player5", triviaGame);
 
-        assertThat(triviaGame.players.purses).isEqualTo(new int[]{0, 0, 0, 0, 0, 0});
+        assertThat(triviaGame.players.getPurses()).isEqualTo(new int[]{0, 0, 0, 0, 0, 0});
     }
 
     @Test
     public void all_players_should_start_out_of_the_penalty_box() throws Exception {
-        triviaGame.addPlayer("player1");
-        triviaGame.addPlayer("player2");
-        triviaGame.addPlayer("player3");
-        triviaGame.addPlayer("player4");
-        triviaGame.addPlayer("player5");
+        triviaGame.players.addPlayer("player1", triviaGame);
+        triviaGame.players.addPlayer("player2", triviaGame);
+        triviaGame.players.addPlayer("player3", triviaGame);
+        triviaGame.players.addPlayer("player4", triviaGame);
+        triviaGame.players.addPlayer("player5", triviaGame);
 
-        assertThat(triviaGame.players.inPenaltyBox).isEqualTo(new boolean[]{false, false, false, false, false, false});
+        assertThat(triviaGame.players.getInPenaltyBox()).isEqualTo(new boolean[]{false, false, false, false, false, false});
     }
 
     @Test
     public void an_one_player_game_is_not_playable() throws Exception {
-        triviaGame.addPlayer("plaver");
+        triviaGame.players.addPlayer("plaver", triviaGame);
 
         assertThat(triviaGame.isPlayable()).isFalse();
     }
 
     @Test
     public void a_two_players_game_is_not_playable() throws Exception {
-        triviaGame.addPlayer("plaver1");
-        triviaGame.addPlayer("plaver2");
+        triviaGame.players.addPlayer("plaver1", triviaGame);
+        triviaGame.players.addPlayer("plaver2", triviaGame);
 
         assertThat(triviaGame.isPlayable()).isTrue();
     }
 
     @Test
     public void a_roll_should_advance_the_player() throws Exception {
-        triviaGame.addPlayer("player1");
+        triviaGame.players.addPlayer("player1", triviaGame);
 
         triviaGame.roll(2);
 
-        assertThat(triviaGame.players.places[0]).isEqualTo(2);
+        assertThat(triviaGame.players.getPlaces()[0]).isEqualTo(2);
     }
 
     @Test
     public void a_player_should_go_back_to_place_0_if_it_overextends_over_12() throws Exception {
-        triviaGame.addPlayer("player1");
+        triviaGame.players.addPlayer("player1", triviaGame);
 
         triviaGame.roll(13);
 
-        assertThat(triviaGame.players.places[0]).isEqualTo(1);
+        assertThat(triviaGame.players.getPlaces()[0]).isEqualTo(1);
     }
 
     @Test
     public void a_player_in_penalty_box_should_stay_in_it_if_he_roll_an_even_number() throws Exception {
-        triviaGame.addPlayer("player");
-        triviaGame.players.inPenaltyBox[0] = true;
+        triviaGame.players.addPlayer("player", triviaGame);
+        triviaGame.players.getInPenaltyBox()[0] = true;
 
         triviaGame.roll(3);
 
@@ -108,8 +108,8 @@ public class GameTest {
 
     @Test
     public void a_player_in_penalty_box_should_go_out_of_it_if_he_roll_an_odd_number() throws Exception {
-        triviaGame.addPlayer("player");
-        triviaGame.players.inPenaltyBox[0] = true;
+        triviaGame.players.addPlayer("player", triviaGame);
+        triviaGame.players.getInPenaltyBox()[0] = true;
 
         triviaGame.roll(3);
 
