@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Game {
 
     final Questions questions = new Questions();
+    private final QuestionFieldRepartition questionFieldRepartitor = new QuestionFieldRepartition(this);
     ArrayList players = new ArrayList();
 
     int[] places = new int[6];
@@ -56,8 +57,8 @@ public class Game {
                 System.out.println(players.get(currentPlayer)
                         + "'s new location is "
                         + places[currentPlayer]);
-                System.out.println("The category is " + currentCategory());
-                questions.askQuestion(currentCategory());
+                System.out.println("The category is " + questionFieldRepartitor.currentCategory());
+                questions.askQuestion(questionFieldRepartitor.currentCategory());
             } else {
                 System.out.println(players.get(currentPlayer) + " is not getting out of the penalty box");
                 isGettingOutOfPenaltyBox = false;
@@ -71,25 +72,12 @@ public class Game {
             System.out.println(players.get(currentPlayer)
                     + "'s new location is "
                     + places[currentPlayer]);
-            System.out.println("The category is " + currentCategory());
-            questions.askQuestion(currentCategory());
+            System.out.println("The category is " + questionFieldRepartitor.currentCategory());
+            questions.askQuestion(questionFieldRepartitor.currentCategory());
         }
 
     }
 
-
-    private String currentCategory() {
-        if (places[currentPlayer] == 0) return "Pop";
-        if (places[currentPlayer] == 4) return "Pop";
-        if (places[currentPlayer] == 8) return "Pop";
-        if (places[currentPlayer] == 1) return "Science";
-        if (places[currentPlayer] == 5) return "Science";
-        if (places[currentPlayer] == 9) return "Science";
-        if (places[currentPlayer] == 2) return "Sports";
-        if (places[currentPlayer] == 6) return "Sports";
-        if (places[currentPlayer] == 10) return "Sports";
-        return "Rock";
-    }
 
     public boolean wasCorrectlyAnswered() {
         if (inPenaltyBox[currentPlayer]){
@@ -142,5 +130,13 @@ public class Game {
 
     private boolean didPlayerWin() {
         return !(purses[currentPlayer] == 6);
+    }
+
+    public int getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public int[] getPlaces() {
+        return places;
     }
 }
