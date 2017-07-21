@@ -9,7 +9,7 @@ public class Questions {
     public Questions() {
     }
 
-    void askQuestion(String currentCategory) {
+    void askQuestionAbout(String currentCategory) {
         if (currentCategory == "Pop")
             System.out.println(getPopQuestions().removeFirst());
         if (currentCategory == "Science")

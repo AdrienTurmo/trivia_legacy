@@ -3,7 +3,7 @@ public class QuestionFieldRepartition {
     public QuestionFieldRepartition() {
     }
 
-    String currentCategory(int place) {
+    String categoryOfCase(int place) {
 
         if (place == 0) return "Pop";
         if (place == 4) return "Pop";

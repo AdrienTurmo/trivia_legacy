@@ -28,14 +28,10 @@ public class Game {
                 isGettingOutOfPenaltyBox = true;
 
                 System.out.println(players.getPlayers().get(currentPlayer) + " is getting out of the penalty box");
-                players.getPlaces()[currentPlayer] = players.getPlaces()[currentPlayer] + roll;
-                if (players.getPlaces()[currentPlayer] > 11) players.getPlaces()[currentPlayer] = players.getPlaces()[currentPlayer] - 12;
 
-                System.out.println(players.getPlayers().get(currentPlayer)
-                        + "'s new location is "
-                        + players.getPlaces()[currentPlayer]);
-                System.out.println("The category is " + questionFieldRepartition.currentCategory(players.getPlaces()[currentPlayer]));
-                questions.askQuestion(questionFieldRepartition.currentCategory(players.getPlaces()[currentPlayer]));
+                movePlayer(roll);
+                displayLocationAndQuestionCategory();
+                questions.askQuestionAbout(questionFieldRepartition.categoryOfCase(players.getPlaces()[currentPlayer]));
             } else {
                 System.out.println(players.getPlayers().get(currentPlayer) + " is not getting out of the penalty box");
                 isGettingOutOfPenaltyBox = false;
@@ -43,16 +39,23 @@ public class Game {
 
         } else {
 
-            players.getPlaces()[currentPlayer] = players.getPlaces()[currentPlayer] + roll;
-            if (players.getPlaces()[currentPlayer] > 11) players.getPlaces()[currentPlayer] = players.getPlaces()[currentPlayer] - 12;
-
-            System.out.println(players.getPlayers().get(currentPlayer)
-                    + "'s new location is "
-                    + players.getPlaces()[currentPlayer]);
-            System.out.println("The category is " + questionFieldRepartition.currentCategory(players.getPlaces()[currentPlayer]));
-            questions.askQuestion(questionFieldRepartition.currentCategory(players.getPlaces()[currentPlayer]));
+            movePlayer(roll);
+            displayLocationAndQuestionCategory();
+            questions.askQuestionAbout(questionFieldRepartition.categoryOfCase(players.getPlaces()[currentPlayer]));
         }
 
+    }
+
+    private void movePlayer(int roll) {
+        players.getPlaces()[currentPlayer] = players.getPlaces()[currentPlayer] + roll;
+        if (players.getPlaces()[currentPlayer] > 11) players.getPlaces()[currentPlayer] = players.getPlaces()[currentPlayer] - 12;
+    }
+
+    private void displayLocationAndQuestionCategory() {
+        System.out.println(players.getPlayers().get(currentPlayer)
+                + "'s new location is "
+                + players.getPlaces()[currentPlayer]);
+        System.out.println("The category is " + questionFieldRepartition.categoryOfCase(players.getPlaces()[currentPlayer]));
     }
 
 
