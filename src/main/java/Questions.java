@@ -1,22 +1,39 @@
 import java.util.LinkedList;
 
 public class Questions {
-    LinkedList popQuestions = new LinkedList();
-    LinkedList scienceQuestions = new LinkedList();
-    LinkedList sportsQuestions = new LinkedList();
-    LinkedList rockQuestions = new LinkedList();
+    private LinkedList popQuestions = new LinkedList();
+    private LinkedList scienceQuestions = new LinkedList();
+    private LinkedList sportsQuestions = new LinkedList();
+    private LinkedList rockQuestions = new LinkedList();
 
     public Questions() {
     }
 
     void askQuestion(String currentCategory) {
         if (currentCategory == "Pop")
-            System.out.println(popQuestions.removeFirst());
+            System.out.println(getPopQuestions().removeFirst());
         if (currentCategory == "Science")
-            System.out.println(scienceQuestions.removeFirst());
+            System.out.println(getScienceQuestions().removeFirst());
         if (currentCategory == "Sports")
-            System.out.println(sportsQuestions.removeFirst());
+            System.out.println(getSportsQuestions().removeFirst());
         if (currentCategory == "Rock")
-            System.out.println(rockQuestions.removeFirst());
+            System.out.println(getRockQuestions().removeFirst());
     }
+
+    public LinkedList getScienceQuestions() {
+        return scienceQuestions;
+    }
+
+    public LinkedList getPopQuestions() {
+        return popQuestions;
+    }
+
+    public LinkedList getSportsQuestions() {
+        return sportsQuestions;
+    }
+
+    public LinkedList getRockQuestions() {
+        return rockQuestions;
+    }
+
 }

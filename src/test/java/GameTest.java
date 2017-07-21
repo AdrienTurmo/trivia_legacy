@@ -1,8 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.lang.reflect.Method;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class GameTest {
@@ -16,10 +14,10 @@ public class GameTest {
 
     @Test
     public void game_should_have_50_questions_of_each_categories() throws Exception {
-        assertThat(triviaGame.questions.popQuestions.size()).isEqualTo(50);
-        assertThat(triviaGame.questions.scienceQuestions.size()).isEqualTo(50);
-        assertThat(triviaGame.questions.sportsQuestions.size()).isEqualTo(50);
-        assertThat(triviaGame.questions.rockQuestions.size()).isEqualTo(50);
+        assertThat(triviaGame.questions.getPopQuestions().size()).isEqualTo(50);
+        assertThat(triviaGame.questions.getScienceQuestions().size()).isEqualTo(50);
+        assertThat(triviaGame.questions.getSportsQuestions().size()).isEqualTo(50);
+        assertThat(triviaGame.questions.getRockQuestions().size()).isEqualTo(50);
     }
 
     @Test
@@ -28,8 +26,8 @@ public class GameTest {
         triviaGame.addPlayer("player2");
 
         assertThat(triviaGame.howManyPlayers()).isEqualTo(2);
-        assertThat(triviaGame.players).contains("player1");
-        assertThat(triviaGame.players).contains("player2");
+        assertThat(triviaGame.players.players).contains("player1");
+        assertThat(triviaGame.players.players).contains("player2");
     }
 
     @Test
@@ -40,7 +38,7 @@ public class GameTest {
         triviaGame.addPlayer("player4");
         triviaGame.addPlayer("player5");
 
-        assertThat(triviaGame.purses).isEqualTo(new int[]{0, 0, 0, 0, 0, 0});
+        assertThat(triviaGame.players.purses).isEqualTo(new int[]{0, 0, 0, 0, 0, 0});
     }
 
     @Test
@@ -51,7 +49,7 @@ public class GameTest {
         triviaGame.addPlayer("player4");
         triviaGame.addPlayer("player5");
 
-        assertThat(triviaGame.purses).isEqualTo(new int[]{0, 0, 0, 0, 0, 0});
+        assertThat(triviaGame.players.purses).isEqualTo(new int[]{0, 0, 0, 0, 0, 0});
     }
 
     @Test
@@ -62,7 +60,7 @@ public class GameTest {
         triviaGame.addPlayer("player4");
         triviaGame.addPlayer("player5");
 
-        assertThat(triviaGame.inPenaltyBox).isEqualTo(new boolean[]{false, false, false, false, false, false});
+        assertThat(triviaGame.players.inPenaltyBox).isEqualTo(new boolean[]{false, false, false, false, false, false});
     }
 
     @Test
@@ -86,7 +84,7 @@ public class GameTest {
 
         triviaGame.roll(2);
 
-        assertThat(triviaGame.places[0]).isEqualTo(2);
+        assertThat(triviaGame.players.places[0]).isEqualTo(2);
     }
 
     @Test
@@ -95,13 +93,13 @@ public class GameTest {
 
         triviaGame.roll(13);
 
-        assertThat(triviaGame.places[0]).isEqualTo(1);
+        assertThat(triviaGame.players.places[0]).isEqualTo(1);
     }
 
     @Test
     public void a_player_in_penalty_box_should_stay_in_it_if_he_roll_an_even_number() throws Exception {
         triviaGame.addPlayer("player");
-        triviaGame.inPenaltyBox[0] = true;
+        triviaGame.players.inPenaltyBox[0] = true;
 
         triviaGame.roll(3);
 
@@ -111,7 +109,7 @@ public class GameTest {
     @Test
     public void a_player_in_penalty_box_should_go_out_of_it_if_he_roll_an_odd_number() throws Exception {
         triviaGame.addPlayer("player");
-        triviaGame.inPenaltyBox[0] = true;
+        triviaGame.players.inPenaltyBox[0] = true;
 
         triviaGame.roll(3);
 
